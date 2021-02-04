@@ -1,0 +1,89 @@
+WindowManager:
+    MainWindow:
+    BasicGames:
+    AdvancedGames:
+
+<MainWindow>:
+    name:"main"
+    GridLayout:
+        cols: 2
+        Button:
+            text: "Basic Games"
+            on_release:
+                app.root.current = "basic"
+                root.manager.transition.direction = "up"
+
+        Button:
+            text: "Advanced Games"
+            on_release:
+                app.root.current = "advanced"
+                root.manager.transition.direction = "down"
+
+
+<BasicGames>:
+    name: "basic"
+    GridLayout:
+        cols: 3
+        Button:
+            text: "PacMan"
+            on_release:
+                root.pac()
+
+        Button:
+            text: "Turn on Camera"
+            on_release:
+                root.cam()
+
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "down"
+
+
+<AdvancedGames>:
+    name: "advanced"
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 3
+            Button:
+                text: "NFS"
+                on_release:
+                    root.btn()
+
+            Button:
+                text: "Turn on Camera"
+                on_release:
+                    root.cam()
+
+            Button:
+                text: "Go Back"
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "up"
+        Button:
+            text: "Delete last path"
+            on_release:
+                root.change()
+
+
+<P>:
+    location: location
+    Label:
+        text: "Enter Game Location"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    TextInput:
+        id: location
+        multiline: False
+        size_hint: 0.7, 0.2
+        pos_hint: {"x":0.2, "top":0.8}
+
+    Button:
+        text: "Submit"
+        size_hint: 0.5, 0.3
+        pos_hint: {"x":0.25, "top":0.5}
+        on_release:
+            root.call()
